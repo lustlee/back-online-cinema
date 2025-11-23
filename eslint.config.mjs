@@ -30,7 +30,7 @@ export default tseslint.config(
       'no-console': 1,
       'require-await': 'off',
       '@typescript-eslint/ban-ts-comment': 'error',
-      '@typescript-eslint/require-await': 'warn',
+      '@typescript-eslint/require-await': 'error',
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
