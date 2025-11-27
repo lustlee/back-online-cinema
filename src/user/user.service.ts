@@ -100,4 +100,46 @@ export class UserService {
 			throw new InternalServerErrorException('Something went wrong');
 		}
 	}
+
+	async toggleFavorite(movieId: Types.ObjectId, user: UserModel) {
+		const { _id, favorites } = user;
+
+		// TODO: Добавить валидацию
+		const currentFavorites = Array.isArray(favorites) ? favorites : [];
+
+		await this.userModel.findByIdAndUpdate(_id, {
+			favorites: currentFavorites.includes(movieId)
+				? currentFavorites.filter((id) => String(id) !== String(movieId))
+				: [...currentFavorites, movieId],
+		});
+	}
+
+	async getFavoriteMovies(_id: Types.ObjectId) {
+		// return this.userModel
+		// 	.findById(_id, 'favorites')
+		// 	.populate({
+		// 		path: 'favorites',
+		// 		populate: {
+		// 			path: 'genres',
+		// 		},
+		// 	})
+		// 	.exec()
+		// 	.then((data) => data.favorites);
+
+		const data = await this.userModel
+			.findById(_id, 'favorites')
+			.populate({
+				path: 'favorites',
+				populate: {
+					path: 'genres',
+				},
+			})
+			.exec();
+
+		if (!data) {
+			throw new NotFoundException('User not found');
+		}
+
+		return data.favorites || [];
+	}
 }
