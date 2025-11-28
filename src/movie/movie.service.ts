@@ -45,7 +45,6 @@ export class MovieService {
 
 	async byActor(actorId: Types.ObjectId) {
 		const docs = await this.movieModel.find({ actors: actorId }).exec();
-		console.log(docs);
 
 		if (!docs) throw new NotFoundException('Movies not found');
 
@@ -86,6 +85,16 @@ export class MovieService {
 		if (!updateDoc) throw new NotFoundException('Movie not found');
 
 		return updateDoc;
+	}
+
+	async updateRating(movieId: Types.ObjectId, rating: number) {
+		if (isNaN(rating)) {
+			rating = 0;
+		}
+
+		return await this.movieModel
+			.findByIdAndUpdate(movieId, { rating }, { new: true })
+			.exec();
 	}
 
 	/* ADMIN PLACE */
