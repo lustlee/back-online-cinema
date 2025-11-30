@@ -39,11 +39,13 @@
     "class-validator-mongo-object-id": "^1.4.0",
     "fs-extra": "^11.3.2",
     "mongoose": "^9.0.0",
+    "nestjs-telegraf": "^2.9.1",
     "nestjs-typegoose": "^7.1.38",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "telegraf": "^4.16.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

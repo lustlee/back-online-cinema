@@ -3,6 +3,7 @@ import { TypegooseModule } from 'nestjs-typegoose';
 import { MovieController } from './movie.controller';
 import { MovieModel } from './movie.model';
 import { MovieService } from './movie.service';
+import { TelegramModule } from '../telegram/telegram.module';
 
 @Module({
 	imports: [
@@ -14,6 +15,7 @@ import { MovieService } from './movie.service';
 				},
 			},
 		]),
+		TelegramModule
 	],
 	controllers: [MovieController],
 	providers: [MovieService],

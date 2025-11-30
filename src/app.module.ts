@@ -11,24 +11,27 @@ import { FileModule } from './file/file.module';
 import { ActorModule } from './actor/actor.module';
 import { MovieModule } from './movie/movie.module';
 import { RatingModule } from './rating/rating.module';
+import { TelegramModule } from './telegram/telegram.module';
+
 
 @Module({
-  imports: [
-    ConfigModule.forRoot(),
-    TypegooseModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: getMongoDbConfig,
-    }),
-    AuthModule,
-    UserModule,
-    GenreModule,
-    FileModule,
-    ActorModule,
-    MovieModule,
-    RatingModule,
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+	imports: [
+		ConfigModule.forRoot(),
+		TypegooseModule.forRootAsync({
+			imports: [ConfigModule],
+			inject: [ConfigService],
+			useFactory: getMongoDbConfig,
+		}),
+		AuthModule,
+		UserModule,
+		GenreModule,
+		FileModule,
+		ActorModule,
+		MovieModule,
+		RatingModule,
+		TelegramModule,
+	],
+	controllers: [AppController],
+	providers: [AppService],
 })
 export class AppModule {}
